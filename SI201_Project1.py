@@ -39,11 +39,28 @@ def analyze_penguins(csv_path, out_path="penguin_results.txt"):
                         adelie_2007 += 1
 
 
-    # Avoid divide-by-zero
-    if rows_2007 > 0:
-        pct_adelie_island_of_2007 = (adelie_island_2007 / rows_2007) * 100
-    else:
-        pct_adelie_island_of_2007 = 0.0
+            # average body mass for all adelie penguins
+            if species == "Adelie" and body_mass:
+                try:
+                    mass_value = float(body_mass)
+                    adelie_mass_total += mass_value
+                    adelie_mass_count += 1
+                except ValueError:
+                    pass
+            
+    # calculate results
+    # Q1
+        if total_2007 > 0:
+            percent_adelie_2007 = (adelie_2007 / total_2007) * 100
+        else:
+            percent_adelie_2007 = 0.0
+
+    # Q2
+        if adelie_mass_count > 0:
+            average_adelie_mass = adelie_mass_total / adelie_mass_count
+        else:
+            average_adelie_mass = 0.0
+
 
     # Write report
     report_lines = [
