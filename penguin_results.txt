@@ -1,0 +1,6 @@
+File: penguins.csv
+---------------------------
+Adelie island (all years):     0
+Total rows in 2007:            110
+Adelie island rows in 2007:    0
+% of 2007 from Adelie island:  0.00%

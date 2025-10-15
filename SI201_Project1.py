@@ -1,5 +1,5 @@
 # SI 201 Project 1
-# Rebecca Sun, working with Junjin Tan
+# Rebecca Sun, with help from ChatGPT
 # 10/06/2025
 # 18852123
 # beccasun@umich.edu
@@ -11,31 +11,33 @@ with open('penguins.csv', newline="") as csvfile:
     for row in reader:
         print(row)
 
-# number of penguins of adelie
-# number of penguins sampled in 2007
+# Question 1: percent of 2007 penguins that are Adelie (species)
+# Question 2: average body mass (g) of all Adelie penguins
 
 def analyze_penguins(csv_path, out_path="penguin_results.txt"):
-    adelie_island_all = 0     # rows where island == "Adelie" (any year)
-    rows_2007 = 0             # rows where year == "2007" (any island)
-    adelie_island_2007 = 0    # rows where island == "Adelie" AND year == "2007"
-
-    # Read each row as a dictionary
-    with open(csv_path, newline="", encoding="utf-8") as f:
+   # Q1
+   adelie_2007 = 0
+   total_2007 = 0
+   # Q2
+   adelie_mass_total = 0 
+   adelie_mass_count = 0
+   
+   # Each row as dictionary
+   with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            species = (row.get("species") or "").strip()
             island = (row.get("island") or "").strip()
             year = str(row.get("year") or "").strip()
+            body_mass = (row.get("body_mass_g") or "").strip()
 
-            # Count Adelie island overall
-            if island == "Adelie":
-                adelie_island_all += 1
+            # % of 2007 penguins that are Adelie
+            if species and year and island:
+                if year =="2007":
+                    total_2007 += 1
+                    if species == "Adelie":
+                        adelie_2007 += 1
 
-            # Count all rows from 2007
-            if year == "2007":
-                rows_2007 += 1
-                # Of those, how many are from Adelie island?
-                if island == "Adelie":
-                    adelie_island_2007 += 1
 
     # Avoid divide-by-zero
     if rows_2007 > 0:
