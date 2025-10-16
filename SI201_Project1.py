@@ -1,12 +1,11 @@
 # SI 201 Project 1
-# Rebecca Sun, with help from ChatGPT
+# Rebecca Sun, with help from ChatGPT with debugging and code completion after attempting it myself first. It also helped with formatting the report.
 # 10/06/2025
 # 18852123
 # beccasun@umich.edu
 
 import csv
 
-# (Optional) quick preview: show first 5 rows so the console isn't flooded
 with open('penguins.csv', newline="") as csvfile:
     reader = csv.reader(csvfile)
     for i, row in enumerate(reader):
@@ -26,7 +25,7 @@ def analyze_penguins(csv_path, out_path="penguin_results.txt"):
     adelie_mass_total = 0.0
     adelie_mass_count = 0
 
-    # Read each row as a dictionary
+    # Read each row as dictionary
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -64,9 +63,9 @@ def analyze_penguins(csv_path, out_path="penguin_results.txt"):
     if adelie_mass_count > 0:
         average_adelie_mass = adelie_mass_total / adelie_mass_count
     else:
-        average_adelie_mass = 0.0  # or use None/"n/a" if you prefer
+        average_adelie_mass = 0.0
 
-    # ---- Write report
+    # Write report
     report_lines = [
         f"File: {csv_path}",
         "---------------------------",
@@ -81,7 +80,7 @@ def analyze_penguins(csv_path, out_path="penguin_results.txt"):
     with open(out_path, "w", encoding="utf-8") as out:
         out.write("\n".join(report_lines))
 
-    # Also print to the screen so you see the answers
+    # Also print to the screen
     print("\n".join(report_lines))
 
 # Run the analysis
